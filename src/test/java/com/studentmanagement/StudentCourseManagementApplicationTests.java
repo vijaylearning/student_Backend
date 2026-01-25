@@ -9,4 +9,9 @@ class StudentCourseManagementApplicationTests {
     @Test
     void contextLoads() {
     }
+
+    @Test
+    void calculator(){
+
+    }
 }

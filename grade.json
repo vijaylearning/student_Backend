@@ -1,0 +1,61 @@
+{
+  "total_tests": 13,
+  "passed_tests": 13,
+  "failed_tests": 0,
+  "skipped_tests": 0,
+  "passedAll": true,
+  "score": 100,
+  "grading_mode": "weighted",
+  "total_points": 100,
+  "earned_points": 100,
+  "breakdown": {
+    "com.studentmanagement.integration.StartupDataTest": {
+      "points": 15,
+      "earned": 15,
+      "present": true,
+      "tests": 1
+    },
+    "com.studentmanagement.integration.StudentsApiIntegrationTest": {
+      "points": 15,
+      "earned": 15,
+      "present": true,
+      "tests": 1
+    },
+    "com.studentmanagement.repository.CourseRepositoryTests": {
+      "points": 10,
+      "earned": 10,
+      "present": true,
+      "tests": 2
+    },
+    "com.studentmanagement.repository.StudentCourseRepositoryTests": {
+      "points": 10,
+      "earned": 10,
+      "present": true,
+      "tests": 2
+    },
+    "com.studentmanagement.service.StudentServiceTests": {
+      "points": 10,
+      "earned": 10,
+      "present": true,
+      "tests": 1
+    },
+    "com.studentmanagement.integration.AdminEnrollControllerTest": {
+      "points": 20,
+      "earned": 20,
+      "present": true,
+      "tests": 2
+    },
+    "com.studentmanagement.integration.StatsApiIntegrationTest": {
+      "points": 10,
+      "earned": 10,
+      "present": true,
+      "tests": 1
+    },
+    "com.studentmanagement.integration.SecurityIntegrationTest": {
+      "points": 10,
+      "earned": 10,
+      "present": true,
+      "tests": 1
+    }
+  }
+}

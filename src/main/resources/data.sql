@@ -1,4 +1,9 @@
--- Insert 10 sample students
+-- Make initialization idempotent: remove child rows first, then parents
+DELETE FROM student_courses;
+DELETE FROM students;
+DELETE FROM courses;
+
+-- Insert 10 sample students with explicit IDs
 INSERT INTO students (id, name, email, phone, active, created_at) VALUES
 (1, 'John Doe', 'john.doe@email.com', '1234567890', true, '2024-01-01 10:00:00'),
 (2, 'Jane Smith', 'jane.smith@email.com', '1234567891', true, '2024-01-02 10:00:00'),
@@ -11,7 +16,7 @@ INSERT INTO students (id, name, email, phone, active, created_at) VALUES
 (9, 'Robert Taylor', 'robert.taylor@email.com', '1234567898', true, '2024-01-09 10:00:00'),
 (10, 'Amanda Martinez', 'amanda.martinez@email.com', '1234567899', true, '2024-01-10 10:00:00');
 
--- Insert 10 sample courses
+-- Insert 10 sample courses with explicit IDs
 INSERT INTO courses (id, name, description, course_code, credits, fee, active, created_at) VALUES
 (1, 'Introduction to Programming', 'Learn the basics of programming with Python', 'CS101', 3, 500.00, true, '2024-01-01 09:00:00'),
 (2, 'Data Structures and Algorithms', 'Advanced programming concepts and problem solving', 'CS201', 4, 750.00, true, '2024-01-01 09:00:00'),
@@ -24,59 +29,59 @@ INSERT INTO courses (id, name, description, course_code, credits, fee, active, c
 (9, 'Mobile App Development', 'Build native and cross-platform mobile applications', 'CS901', 4, 850.00, true, '2024-01-01 09:00:00'),
 (10, 'Cloud Computing', 'Learn AWS, Docker, and containerization technologies', 'CS1001', 3, 700.00, true, '2024-01-01 09:00:00');
 
--- Insert sample enrollments (student-course relationships)
+-- Insert sample enrollments (student-course relationships) using the explicit IDs above
 -- Student 1 (John Doe) - enrolled in 5 courses (maximum enrollments)
-INSERT INTO student_courses (id, student_id, course_id, enrolled_at, enrolled_by, status) VALUES
-(1, 1, 1, '2024-01-15 10:00:00', 'admin', 'ACTIVE'),
-(2, 1, 2, '2024-01-16 10:00:00', 'admin', 'ACTIVE'),
-(3, 1, 3, '2024-01-17 10:00:00', 'admin', 'ACTIVE'),
-(4, 1, 4, '2024-01-18 10:00:00', 'admin', 'ACTIVE'),
-(5, 1, 5, '2024-01-19 10:00:00', 'admin', 'ACTIVE');
+INSERT INTO student_courses (student_id, course_id, enrolled_at, enrolled_by, status) VALUES
+(1, 1, '2024-01-15 10:00:00', 'admin', 'ACTIVE'),
+(1, 2, '2024-01-16 10:00:00', 'admin', 'ACTIVE'),
+(1, 3, '2024-01-17 10:00:00', 'admin', 'ACTIVE'),
+(1, 4, '2024-01-18 10:00:00', 'admin', 'ACTIVE'),
+(1, 5, '2024-01-19 10:00:00', 'admin', 'ACTIVE');
 
 -- Student 2 (Jane Smith) - enrolled in 3 courses
-INSERT INTO student_courses (id, student_id, course_id, enrolled_at, enrolled_by, status) VALUES
-(6, 2, 1, '2024-01-15 11:00:00', 'admin', 'ACTIVE'),
-(7, 2, 6, '2024-01-16 11:00:00', 'admin', 'ACTIVE'),
-(8, 2, 7, '2024-01-17 11:00:00', 'admin', 'ACTIVE');
+INSERT INTO student_courses (student_id, course_id, enrolled_at, enrolled_by, status) VALUES
+(2, 1, '2024-01-15 11:00:00', 'admin', 'ACTIVE'),
+(2, 6, '2024-01-16 11:00:00', 'admin', 'ACTIVE'),
+(2, 7, '2024-01-17 11:00:00', 'admin', 'ACTIVE');
 
 -- Student 3 (Mike Johnson) - enrolled in 4 courses
-INSERT INTO student_courses (id, student_id, course_id, enrolled_at, enrolled_by, status) VALUES
-(9, 3, 2, '2024-01-15 12:00:00', 'admin', 'ACTIVE'),
-(10, 3, 3, '2024-01-16 12:00:00', 'admin', 'ACTIVE'),
-(11, 3, 9, '2024-01-17 12:00:00', 'admin', 'ACTIVE'),
-(12, 3, 10, '2024-01-18 12:00:00', 'admin', 'ACTIVE');
+INSERT INTO student_courses (student_id, course_id, enrolled_at, enrolled_by, status) VALUES
+(3, 2, '2024-01-15 12:00:00', 'admin', 'ACTIVE'),
+(3, 3, '2024-01-16 12:00:00', 'admin', 'ACTIVE'),
+(3, 9, '2024-01-17 12:00:00', 'admin', 'ACTIVE'),
+(3, 10, '2024-01-18 12:00:00', 'admin', 'ACTIVE');
 
 -- Student 4 (Sarah Wilson) - enrolled in 2 courses
-INSERT INTO student_courses (id, student_id, course_id, enrolled_at, enrolled_by, status) VALUES
-(13, 4, 4, '2024-01-15 13:00:00', 'admin', 'ACTIVE'),
-(14, 4, 5, '2024-01-16 13:00:00', 'admin', 'ACTIVE');
+INSERT INTO student_courses (student_id, course_id, enrolled_at, enrolled_by, status) VALUES
+(4, 4, '2024-01-15 13:00:00', 'admin', 'ACTIVE'),
+(4, 5, '2024-01-16 13:00:00', 'admin', 'ACTIVE');
 
 -- Student 5 (David Brown) - enrolled in 3 courses
-INSERT INTO student_courses (id, student_id, course_id, enrolled_at, enrolled_by, status) VALUES
-(15, 5, 1, '2024-01-15 14:00:00', 'admin', 'ACTIVE'),
-(16, 5, 6, '2024-01-16 14:00:00', 'admin', 'ACTIVE'),
-(17, 5, 7, '2024-01-17 14:00:00', 'admin', 'ACTIVE');
+INSERT INTO student_courses (student_id, course_id, enrolled_at, enrolled_by, status) VALUES
+(5, 1, '2024-01-15 14:00:00', 'admin', 'ACTIVE'),
+(5, 6, '2024-01-16 14:00:00', 'admin', 'ACTIVE'),
+(5, 7, '2024-01-17 14:00:00', 'admin', 'ACTIVE');
 
 -- Student 6 (Emily Davis) - enrolled in 2 courses
-INSERT INTO student_courses (id, student_id, course_id, enrolled_at, enrolled_by, status) VALUES
-(18, 6, 2, '2024-01-15 15:00:00', 'admin', 'ACTIVE'),
-(19, 6, 8, '2024-01-16 15:00:00', 'admin', 'DROPPED');
+INSERT INTO student_courses (student_id, course_id, enrolled_at, enrolled_by, status) VALUES
+(6, 2, '2024-01-15 15:00:00', 'admin', 'ACTIVE'),
+(6, 8, '2024-01-16 15:00:00', 'admin', 'DROPPED');
 
 -- Student 7 (Chris Miller) - enrolled in 1 course
-INSERT INTO student_courses (id, student_id, course_id, enrolled_at, enrolled_by, status) VALUES
-(20, 7, 9, '2024-01-15 16:00:00', 'admin', 'ACTIVE');
+INSERT INTO student_courses (student_id, course_id, enrolled_at, enrolled_by, status) VALUES
+(7, 9, '2024-01-15 16:00:00', 'admin', 'ACTIVE');
 
 -- Student 9 (Robert Taylor) - enrolled in 2 courses
-INSERT INTO student_courses (id, student_id, course_id, enrolled_at, enrolled_by, status) VALUES
-(21, 9, 3, '2024-01-15 17:00:00', 'admin', 'ACTIVE'),
-(22, 9, 10, '2024-01-16 17:00:00', 'admin', 'ACTIVE');
+INSERT INTO student_courses (student_id, course_id, enrolled_at, enrolled_by, status) VALUES
+(9, 3, '2024-01-15 17:00:00', 'admin', 'ACTIVE'),
+(9, 10, '2024-01-16 17:00:00', 'admin', 'ACTIVE');
 
 -- Student 10 (Amanda Martinez) - enrolled in 1 course
-INSERT INTO student_courses (id, student_id, course_id, enrolled_at, enrolled_by, status) VALUES
-(23, 10, 4, '2024-01-15 18:00:00', 'admin', 'COMPLETED');
+INSERT INTO student_courses (student_id, course_id, enrolled_at, enrolled_by, status) VALUES
+(10, 4, '2024-01-15 18:00:00', 'admin', 'COMPLETED');
 
--- Additional enrollments to make Course 1 (Introduction to Programming) have maximum students (4 students)
--- Course 1: Students 1, 2, 5 are already enrolled
--- Course 2: Students 1, 3, 6 (3 students)
--- Course 3: Students 1, 3, 9 (3 students)
--- Course 4: Students 1, 4, 10 (3 students)
+-- Reset identity columns so future generated IDs won't collide with explicit IDs
+ALTER TABLE students ALTER COLUMN id RESTART WITH 11;
+ALTER TABLE courses ALTER COLUMN id RESTART WITH 11;
+ALTER TABLE student_courses ALTER COLUMN id RESTART WITH 101; -- start enrollments at a higher number
+

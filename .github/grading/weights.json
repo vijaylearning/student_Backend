@@ -1,0 +1,10 @@
+{
+  "com.studentmanagement.integration.StartupDataTest": 15,
+  "com.studentmanagement.integration.StudentsApiIntegrationTest": 15,
+  "com.studentmanagement.repository.CourseRepositoryTests": 10,
+  "com.studentmanagement.repository.StudentCourseRepositoryTests": 10,
+  "com.studentmanagement.service.StudentServiceTests": 10,
+  "com.studentmanagement.integration.AdminEnrollControllerTest": 20,
+  "com.studentmanagement.integration.StatsApiIntegrationTest": 10,
+  "com.studentmanagement.integration.SecurityIntegrationTest": 10
+}

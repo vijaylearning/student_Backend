@@ -263,7 +263,7 @@ src/main/java/com/studentmanagement/
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License. Copyright (c) 2026 Max IT Solutions.
 
 ## Support
 
@@ -271,3 +271,49 @@ For support and questions:
 - Create an issue on GitHub
 - Check the Swagger documentation
 - Review the application logs
+
+## Grading and Autograder (CI)
+
+This repository includes an autograder that runs in GitHub Actions and produces a `grade.json` file summarizing test results and a numeric score.
+
+- Workflow: `.github/workflows/ci.yml` runs `mvn test`, parses Surefire reports, and produces `grade.json`.
+- The workflow uploads `grade.json` and `target/surefire-reports` as artifacts.
+- For pull requests the workflow also posts a comment with the `grade.json` contents.
+
+Scoring modes:
+- Simple percent (default): score = round(100 * passed_tests / total_tests).
+- Weighted (recommended): add a weights manifest at `.github/grading/weights.json` to assign points.
+
+Weights manifest formats supported:
+- Class-level: `{"com.example.MyTestClass": 10}` — awards 10 points if all tests in that class pass.
+- Per-test: `{"com.example.MyTestClass#testMethod": 5}` — awards 5 points if that specific testcase passes.
+- Mixed entries are allowed.
+
+Example weights file (already included):
+
+```json
+{
+  "com.studentmanagement.integration.StartupDataTest": 20,
+  "com.studentmanagement.integration.StudentsApiIntegrationTest": 20,
+  "com.studentmanagement.repository.CourseRepositoryTests": 10,
+  "com.studentmanagement.repository.StudentCourseRepositoryTests": 10,
+  "com.studentmanagement.service.StudentServiceTests": 10,
+  "com.studentmanagement.integration.AdminEnrollControllerTest": 30
+}
+```
+
+How to run locally (PowerShell):
+
+```powershell
+Set-Location 'E:\Workspace\student-course-management-Backend'
+# Run tests and generate surefire reports:
+mvn -B clean test
+# Run the autograder parser locally to produce grade.json:
+python .github/scripts/parse_surefire.py target/surefire-reports
+# View the grade:
+Get-Content grade.json -Raw
+```
+
+Notes:
+- The CI parser supports per-test weights using the `ClassName#testMethod` key syntax.
+- If you change the weights manifest, update `.github/grading/weights.json` and commit it — CI will pick it up on the next run.
