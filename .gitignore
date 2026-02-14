@@ -1,0 +1,38 @@
+# Java and Maven
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven wrapper
+.mvn/wrapper/maven-wrapper.jar
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test output
+/surefire-reports/
+
+# Other
+dependency-reduced-pom.xml
+release.properties
