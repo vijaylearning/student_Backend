@@ -14,6 +14,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="student-course-management" options="-parameters" />
+      <module name="student_Backend" options="-parameters" />
     </option>
   </component>
 </project>

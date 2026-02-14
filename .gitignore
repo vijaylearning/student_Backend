@@ -1,3 +1,27 @@
+# Java and Maven
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven wrapper
+.mvn/wrapper/maven-wrapper.jar
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# VS Code
+.vscode/
 # Ignore build output
 /target/
 
@@ -15,6 +39,7 @@
 .DS_Store
 Thumbs.db
 
+# Test output
 # Test results
 /surefire-reports/
 
