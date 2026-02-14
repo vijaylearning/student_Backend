@@ -1,0 +1,23 @@
+# Ignore build output
+/target/
+
+# IntelliJ
+/.idea/
+*.iml
+
+# Maven
+.mvn/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test results
+/surefire-reports/
+
+# Other
+dependency-reduced-pom.xml
+release.properties
