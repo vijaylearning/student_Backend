@@ -22,6 +22,15 @@ out/
 
 # VS Code
 .vscode/
+# Ignore build output
+/target/
+
+# IntelliJ
+/.idea/
+*.iml
+
+# Maven
+.mvn/
 
 # Logs
 *.log
@@ -31,6 +40,7 @@ out/
 Thumbs.db
 
 # Test output
+# Test results
 /surefire-reports/
 
 # Other
